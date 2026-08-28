@@ -1,0 +1,754 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<title>VBTI Voice Type</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --dot: #1e1e1e;
+    --paper: #121212;
+    --paper-deep: #0a0a0a;
+    --paper-deeper: #080808;
+    --gold: #d4af37;
+    --gold-light: #f1d98a;
+    --gold-wash: rgba(212, 175, 55, 0.10);
+    --coral: #ff7878;
+    --coral-wash: rgba(255, 120, 120, 0.10);
+    --text: #f4f1ea;
+    --text-soft: #d8d3c6;
+    --text-mute: #948d7c;
+    --text-mute-2: #6f6a5c;
+    --line: #2c2a24;
+    --line-soft: #201f1a;
+  }
+  /* This page intentionally commits to one look — dark + gold — matching vbti.kr's report and
+     payment pages, which are always dark regardless of the visitor's system theme. No light-mode
+     fallback on purpose, so the brand never flips depending on the viewer's OS setting. */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(var(--dot) 1px, transparent 0);
+    background-size: 22px 22px;
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+  .display { font-family: 'Unbounded', 'IBM Plex Sans', sans-serif; text-wrap: balance; }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: inherit; }
+  img, svg, canvas { max-width: 100%; display: block; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { font-size: 11.5px; font-weight: 600; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+  .nav .brand { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.5px; }
+  .nav .brand .dot { color: var(--gold); }
+  .nav .cta-mini {
+    font-size: 12.5px; font-weight: 700; background: var(--gold); color: #14110d;
+    padding: 9px 18px; border-radius: 999px; text-decoration: none; white-space: nowrap;
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 76px 0 64px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  .hero h1 {
+    font-size: clamp(34px, 5vw, 56px); font-weight: 700; line-height: 1.08; margin: 18px 0 22px;
+  }
+  .hero h1 .accent {
+    display: inline-block;
+    background: linear-gradient(90deg,
+      #d4af37 0%, #d4af37 22%,
+      #a3842a 38%,
+      #5c4a17 50%,
+      #a3842a 62%,
+      #d4af37 78%, #d4af37 100%);
+    background-size: 280% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: heroShimmer 10s ease-in-out infinite;
+  }
+  @keyframes heroShimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -80% 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .accent { animation: none; background-position: 60% 0; }
+  }
+  .hero .lede { font-size: 16.5px; color: var(--text-soft); max-width: 52ch; margin-bottom: 30px; }
+  .hero .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 22px; }
+  .btn-primary {
+    display: inline-block; background: var(--gold); color: #14110d; font-weight: 700; font-size: 15px;
+    padding: 15px 28px; border-radius: 8px; text-decoration: none;
+  }
+  .btn-ghost {
+    display: inline-block; border: 1px solid var(--line); color: var(--text-soft); font-weight: 600;
+    font-size: 14px; padding: 14px 22px; border-radius: 8px; text-decoration: none;
+  }
+  .trust-line { font-size: 12.5px; color: var(--text-mute); }
+  .trust-line b { color: var(--text-soft); font-weight: 600; }
+  .hub-nav { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+  .hub-nav a {
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--text-soft); text-decoration: none; white-space: nowrap;
+  }
+  .hub-nav a:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  .radar-box { position: relative; aspect-ratio: 1 / 1; max-width: 420px; margin: 0 auto; }
+  .radar-caption { text-align: center; font-size: 11px; color: var(--text-mute-2); margin-top: 10px; letter-spacing: 0.5px; }
+
+  /* ---------- generic section ---------- */
+  section { padding: 64px 0; border-top: 1px solid var(--line-soft); }
+  section .kicker { margin-bottom: 14px; }
+  h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(24px, 3.2vw, 32px); font-weight: 700; text-wrap: balance; max-width: 26ch; }
+  .section-sub { font-size: 15px; color: var(--text-mute); max-width: 60ch; margin-top: 12px; }
+
+  /* ---------- trust points ---------- */
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
+  .trust-card { background: var(--paper); border: 1px solid var(--line); padding: 24px; }
+  .trust-card .num { font-family: 'IBM Plex Mono', monospace; color: var(--gold); font-size: 13px; margin-bottom: 12px; }
+  .trust-card h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 8px; }
+  .trust-card p { font-size: 13.5px; color: var(--text-mute); }
+
+  /* ---------- how it works ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; position: relative; }
+  .step { position: relative; padding: 0 20px 0 0; }
+  .step:not(:last-child)::after {
+    content: ""; position: absolute; top: 20px; right: -1px; width: 1px; height: calc(100% - 20px);
+    background: var(--line);
+  }
+  .step .step-num { font-family: 'Unbounded', sans-serif; font-size: 34px; font-weight: 900; color: var(--line); margin-bottom: 14px; }
+  .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .step p { font-size: 13.5px; color: var(--text-mute); max-width: 32ch; }
+
+  /* ---------- flagship program ---------- */
+  .flagship {
+    margin-top: 40px; background: var(--paper); border: 1px solid var(--gold); box-shadow: 0 0 0 1px var(--gold) inset;
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+  }
+  .flagship-info { padding: 40px; }
+  .flagship-media { padding: 40px; background: var(--paper-deep); border-left: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; }
+  .flagship .badge {
+    display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; color: #14110d;
+    background: var(--gold); padding: 3px 10px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .flagship h3 { font-family: 'Unbounded', sans-serif; font-size: 24px; font-weight: 700; margin-bottom: 10px; text-wrap: balance; }
+  .flagship .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
+  .flagship .price { font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 700; color: var(--gold); }
+  .flagship .per { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-mute); }
+  .flagship .desc { font-size: 14px; color: var(--text-mute); margin-bottom: 22px; max-width: 44ch; }
+  .flagship ul { list-style: none; margin-bottom: 24px; }
+  .flagship li { font-size: 13.5px; color: var(--text-soft); padding-left: 18px; position: relative; margin-bottom: 10px; line-height: 1.5; }
+  .flagship li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  .flagship-alt { font-size: 12.5px; color: var(--text-mute); margin-top: 14px; }
+  .flagship-alt a { color: var(--gold-light); font-weight: 600; text-decoration: none; }
+  .flagship-media .fm-label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
+  .fm-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+  .fm-item .fm-num { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--gold); flex-shrink: 0; padding-top: 1px; }
+  .fm-item div { font-size: 13px; color: var(--text-soft); line-height: 1.5; }
+
+  .note-box {
+    margin-top: 22px; font-size: 12.5px; color: var(--text-mute); background: var(--gold-wash);
+    border-left: 3px solid var(--gold); padding: 12px 16px;
+  }
+
+  /* ---------- two-path songwriting grid ---------- */
+  .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 36px; }
+  .path-card { background: var(--paper); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; }
+  .path-tag { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px; }
+  .path-card h3 { font-family: 'Unbounded', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .path-desc { font-size: 13px; color: var(--text-mute); margin-bottom: 18px; }
+  .path-card ul { list-style: none; margin-bottom: 22px; flex-grow: 1; }
+  .path-card li { font-size: 12.5px; color: var(--text-soft); padding-left: 16px; position: relative; margin-bottom: 8px; line-height: 1.5; }
+  .path-card li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  .path-cta {
+    display: inline-block; text-align: center; padding: 12px 18px; border-radius: 8px; font-weight: 700;
+    font-size: 13px; text-decoration: none; background: var(--gold-wash); color: var(--gold-light); border: 1px solid var(--line);
+  }
+  .path-card.hi .path-cta { background: var(--gold); color: #14110d; border-color: var(--gold); }
+
+  /* ---------- studio (offline) ---------- */
+  .studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 36px; align-items: start; }
+  .studio-classes { list-style: none; margin: 16px 0 22px; }
+  .studio-classes li { font-size: 13.5px; color: var(--text-soft); padding-left: 18px; position: relative; margin-bottom: 8px; }
+  .studio-classes li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  .studio-addr { background: var(--paper); border: 1px solid var(--line); padding: 22px; font-size: 13.5px; color: var(--text-soft); line-height: 1.8; }
+  .studio-addr b { color: var(--text); }
+  .studio-addr a { color: var(--gold-light); text-decoration: none; font-weight: 600; }
+
+  /* ---------- experience day (tourists) ---------- */
+  .exp-card { margin-top: 36px; background: var(--paper); border: 1px solid var(--line); padding: 32px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .exp-card ul { list-style: none; }
+  .exp-card li { font-size: 13.5px; color: var(--text-soft); padding-left: 18px; position: relative; margin-bottom: 9px; }
+  .exp-card li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  .exp-price { text-align: center; }
+  .exp-price .price { font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 700; color: var(--gold); display: block; }
+  .exp-price .per { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-mute); margin-bottom: 14px; display: block; }
+
+  /* ---------- founder ---------- */
+  .founder { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start; margin-top: 40px; }
+  .founder-mark {
+    aspect-ratio: 1; background: var(--paper); border: 2px solid var(--gold); display: flex; align-items: center;
+    justify-content: center; font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 42px; color: var(--gold);
+  }
+  .founder blockquote { font-size: 17px; color: var(--text-soft); font-style: normal; margin-bottom: 16px; text-wrap: balance; }
+  .founder .name { font-weight: 700; font-size: 14.5px; }
+  .founder .role { font-size: 12.5px; color: var(--gold); margin-bottom: 14px; }
+  .founder .cred { font-size: 12.5px; color: var(--text-mute); line-height: 1.8; }
+  .philosophy {
+    margin-top: 22px; padding: 18px 22px; background: var(--paper); border-left: 3px solid var(--gold);
+  }
+  .philosophy .eyebrow { font-size: 10.5px; letter-spacing: 2.5px; margin-bottom: 8px; display: block; }
+  .philosophy p { font-size: 14.5px; font-style: italic; color: var(--text-soft); line-height: 1.7; margin-bottom: 8px; }
+  .philosophy .attr { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--gold-light); }
+
+  /* ---------- faq ---------- */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    border: 1px solid var(--line); border-radius: 10px; background: var(--paper);
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .faq-item summary {
+    list-style: none; cursor: pointer; padding: 18px 22px; font-weight: 600; font-size: 15px;
+    color: var(--text); display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+"; font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: var(--gold);
+    flex-shrink: 0; transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after { content: "\2212"; }
+  .faq-item[open] summary { border-bottom: 1px solid var(--line); }
+  .faq-item p { padding: 16px 22px 20px; color: var(--text-soft); font-size: 14px; line-height: 1.7; }
+
+  /* ---------- final cta ---------- */
+  .final-cta { text-align: center; padding: 72px 0; }
+  .final-cta h2 { margin: 0 auto 16px; }
+  .final-cta .lede { color: var(--text-mute); max-width: 44ch; margin: 0 auto 30px; }
+
+  footer { border-top: 1px solid var(--line-soft); padding: 36px 0 48px; }
+  .foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 24px; font-size: 12px; color: var(--text-mute-2); }
+  .foot-grid b { color: var(--text-mute); }
+  .foot-legal { line-height: 1.9; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .radar-box { order: -1; max-width: 260px; }
+    .trust-grid, .steps, .founder { grid-template-columns: 1fr; }
+    .step:not(:last-child)::after { display: none; }
+    .founder { text-align: left; }
+    .founder-mark { width: 100px; }
+    .flagship { grid-template-columns: 1fr; }
+    .flagship-media { border-left: none; border-top: 1px solid var(--line); }
+    .path-grid { grid-template-columns: 1fr; }
+    .studio-grid { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 1fr; text-align: left; }
+    .exp-price { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">OPENMIC<span class="dot">·</span>VBTI</div>
+    <a class="cta-mini" href="#coaching">See the Program</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">SEOUL, SOUTH KOREA — VOICE ANALYSIS + K-POP VOCAL COACHING</div>
+      <h1 class="display">What's Your <span class="accent">Voice Type?</span></h1>
+      <p class="lede">Free voice analysis, then live 1:1 K-pop vocal coaching over Zoom — from a trainer who has coached
+        SM, YG, JYP, THE BLACK LABEL and ADOR audition hopefuls. Wherever you are.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="https://calendly.com/chlwhdtn305/30min" target="_blank" rel="noopener">Book Your Free Voice Type Call</a>
+        <a class="btn-ghost" href="#coaching">See the Program →</a>
+      </div>
+      <div class="trust-line">Currently onboarding a <b>small pilot group</b> of international students — limited 1:1 slots.</div>
+      <div class="hub-nav">
+        <a href="#coaching">4-Week Cover Coaching</a>
+        <a href="#songwriting">Get a Song Made</a>
+        <a href="#studio">Visit Our Seoul Studio</a>
+        <a href="#experience">K-Vocal Day (Travelers)</a>
+      </div>
+    </div>
+    <div>
+      <div class="radar-box"><canvas id="radar" width="420" height="420" role="img" aria-label="Six-axis vocal analysis radar chart"></canvas></div>
+      <div class="radar-caption mono">SAMPLE VBTI VOICE ANALYSIS</div>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">WHY OPENMIC</div>
+    <h2>Not just a lesson. A measured, produced result.</h2>
+    <p class="section-sub">Most online K-pop coaching sells you an hour of a coach's time. We start by measuring your
+      voice, then build a plan around what we find — and our flagship program ends with a real, professionally
+      mixed and mastered recording, not just notes.</p>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="num mono">01</div>
+        <h3>Real K-pop training credentials</h3>
+        <p>Trainer background includes JYP Entertainment in-house trainee coaching, and students placed through
+          SM / YG / JYP / THE BLACK LABEL / ADOR auditions.</p>
+      </div>
+      <div class="trust-card">
+        <div class="num mono">02</div>
+        <h3>A voice analysis, not a guess</h3>
+        <p>Your free VBTI report measures breath support, resonance focus, pitch connection and delivery dynamics —
+          the same framework used with our in-person Seoul students.</p>
+      </div>
+      <div class="trust-card">
+        <div class="num mono">03</div>
+        <h3>You leave with something real</h3>
+        <p>Our 4-Week Complete Cover Project includes professional mixing, mastering, and an edited cover video —
+          not just lesson notes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">HOW IT WORKS</div>
+    <h2>Three steps, starting with a free call.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num mono">01</div>
+        <h3>Book your free call</h3>
+        <p>A real 15-minute Zoom conversation with your future coach — no obligation, no card required.</p>
+      </div>
+      <div class="step">
+        <div class="step-num mono">02</div>
+        <h3>Get your VBTI voice report</h3>
+        <p>A short recording turns into your personal voice-type analysis and a coaching plan built around it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num mono">03</div>
+        <h3>Train live over Zoom</h3>
+        <p>1:1 sessions on technique and repertoire — leading into the 4-Week Complete Cover Project if you want a fully produced release.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coaching">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">SIGNATURE PROGRAM</div>
+    <h2>One song, fully produced, in four weeks.</h2>
+    <p class="section-sub">This is the program we put our full weight behind — live 1:1 coaching that ends with a
+      real, released-quality cover, not just lesson notes.</p>
+
+    <div class="flagship">
+      <div class="flagship-info">
+        <div class="badge">FLAGSHIP PROGRAM</div>
+        <h3 class="display">4-Week Complete Cover Project</h3>
+        <div class="price-row">
+          <span class="price">$559</span>
+          <span class="per">$139.75 / session · 4 sessions over 4 weeks</span>
+        </div>
+        <p class="desc">Every week is a live 50-minute Zoom session built around one song you choose. By week four,
+          your take is professionally mixed, mastered, and cut into a finished cover video.</p>
+        <ul>
+          <li>4 × 50-min live 1:1 Zoom vocal sessions, one per week</li>
+          <li>Live human interpretation included in every session — no language barrier</li>
+          <li>Full coaching on one song, start to finish — technique, phrasing, delivery</li>
+          <li>Professional mixing &amp; mastering of your final take</li>
+          <li>Edited official cover video — vertical + horizontal cuts, ready to post</li>
+        </ul>
+        <a class="btn-primary" href="mailto:5042480@naver.com?subject=4-Week%20Complete%20Cover%20Project&body=Hi%20OPENMIC%2C%0A%0AI'd%20like%20to%20start%20the%204-Week%20Complete%20Cover%20Project.%0A%0AMy%20name%3A%0AMy%20time%20zone%3A%0ASong%20I%20have%20in%20mind%20(optional)%3A">Start My 4-Week Cover Project</a>
+        <div class="flagship-alt">Not ready to commit yet? <a href="https://calendly.com/chlwhdtn305/30min" target="_blank" rel="noopener">Book the free Voice Type call first →</a></div>
+      </div>
+      <div class="flagship-media">
+        <div class="fm-label mono">WHAT YOU WALK AWAY WITH</div>
+        <div class="fm-item"><div class="fm-num mono">01</div><div>A finished, professionally coached vocal take of a song you chose</div></div>
+        <div class="fm-item"><div class="fm-num mono">02</div><div>A studio-grade mixed &amp; mastered audio file</div></div>
+        <div class="fm-item"><div class="fm-num mono">03</div><div>Two edited video cuts — one for feed, one for Reels/Shorts</div></div>
+        <div class="fm-item"><div class="fm-num mono">04</div><div>Real, specific coaching notes you can keep using after week four</div></div>
+      </div>
+    </div>
+    <div class="note-box">Pricing includes live interpretation and is set relative to comparable overseas K-pop coaching programs — final number pending our interpreter's confirmed rate.</div>
+  </div>
+</section>
+
+<section id="songwriting">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">CUSTOM PRODUCTION</div>
+    <h2>Need a song made? Two ways to get one.</h2>
+    <p class="section-sub">Depending on what you need — a fast, on-brief production, or a fully original song
+      written by a real songwriter — we can connect you with the right path.</p>
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="path-tag">PATH A — FAST &amp; AI-PRODUCED</div>
+        <h3>AI Track Production</h3>
+        <p class="path-desc">A one-off production service for people who just need a finished piece of music — an ad
+          jingle, background music for a video, a simple original song — without a long production process. We use
+          our own in-house process for getting high-quality, on-brief results quickly. You get the finished track;
+          the process behind it stays ours.</p>
+        <ul>
+          <li>Delivered in days, not weeks</li>
+          <li>Simple brief in, finished track out</li>
+          <li>Ad music, background scoring, social content — commercial use included</li>
+        </ul>
+        <a class="path-cta" href="mailto:5042480@naver.com?subject=Custom%20Track%20Request&body=Hi%20OPENMIC%2C%0A%0AI'd%20like%20to%20request%20a%20custom%20track.%0A%0AWhat%20it's%20for%3A%0AMood%2Freference%20tracks%3A%0ADeadline%3A">Request a Custom Track</a>
+      </div>
+      <div class="path-card">
+        <div class="path-tag">PATH B — WRITTEN BY A HUMAN</div>
+        <h3>Work With a Songwriter</h3>
+        <p class="path-desc">Want something more personal, with real lyrics and a real writer behind it? We work
+          with a professional songwriter we know and trust for fully original, human-written songs — for an artist
+          project, a proposal, a gift, or anything that calls for more than a quick production.</p>
+        <ul>
+          <li>Original lyrics &amp; composition by a human songwriter</li>
+          <li>Good for artist releases, proposals, milestone gifts</li>
+          <li>Timeline and scope discussed per project</li>
+        </ul>
+        <a class="path-cta" href="mailto:5042480@naver.com?subject=Songwriter%20Inquiry&body=Hi%20OPENMIC%2C%0A%0AI'd%20like%20to%20inquire%20about%20working%20with%20a%20songwriter.%0A%0AWhat%20it's%20for%3A%0AMood%2Freference%20songs%3A%0ATimeline%3A">Inquire About a Songwriter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">VISIT US IN SEOUL</div>
+    <h2>Train in person at our Anyang studio.</h2>
+    <p class="section-sub">OPENMIC is a real recording studio outside Seoul, not just an online brand — if you're
+      in Korea, you can train with us in person.</p>
+    <div class="studio-grid">
+      <div>
+        <p style="font-size:13.5px; color:var(--text-mute); margin-bottom:14px;">Beyond vocal coaching and cover
+          production, our in-person studio also teaches:</p>
+        <ul class="studio-classes">
+          <li>Vocal training (regular membership)</li>
+          <li>Singer-songwriter coaching</li>
+          <li>MIDI / DAW composition</li>
+          <li>Suno AI composition</li>
+          <li>Guitar</li>
+          <li>Jazz piano</li>
+        </ul>
+      </div>
+      <div class="studio-addr">
+        <b>OPENMIC Music Studio</b><br>
+        6 Dongpyeon-ro 27beon-gil, Dongan-gu, Anyang-si, Gyeonggi-do, South Korea<br>
+        1F, Unit 102, Gwanyang-dong<br>
+        Studio line: +82 10-6382-5530<br><br>
+        <a href="https://www.google.com/maps/search/?api=1&query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%95%88%EC%96%91%EC%8B%9C%20%EB%8F%99%EC%95%88%EA%B5%AC%20%EB%8F%99%ED%8E%B8%EB%A1%9C27%EB%B2%88%EA%B8%B8%206">Get Directions →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">FOR TRAVELERS IN KOREA</div>
+    <h2>The K-Vocal Experience Day.</h2>
+    <p class="section-sub">A one-time studio experience for visitors — no singing background needed, just an
+      afternoon in Seoul you'll actually remember.</p>
+    <div class="exp-card">
+      <div>
+        <ul>
+          <li>~90 minutes, one-on-one, at our Anyang studio</li>
+          <li>A private mini vocal session on a K-pop song of your choice</li>
+          <li>Studio-quality recording of a verse or chorus</li>
+          <li>A mixed audio clip + video souvenir to take home</li>
+          <li>No experience or Korean language needed</li>
+        </ul>
+      </div>
+      <div class="exp-price">
+        <span class="price">$89</span>
+        <span class="per">per person</span>
+        <a class="pkg-cta" style="display:block; background:var(--gold); color:#14110d; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px;" href="mailto:5042480@naver.com?subject=K-Vocal%20Experience%20Day&body=Hi%20OPENMIC%2C%0A%0AI'd%20like%20to%20book%20a%20K-Vocal%20Experience%20Day.%0A%0ADates%20I'm%20in%20Korea%3A%0ANumber%20of%20people%3A%0ASong%20I'd%20like%20to%20try%20(optional)%3A">Reserve Your Day</a>
+      </div>
+    </div>
+    <div class="note-box">Draft pricing — let us know if you'd like this priced differently before it goes live.</div>
+  </div>
+</section>
+
+<section id="founder">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">YOUR COACH</div>
+    <div class="founder">
+      <div class="founder-mark">CJ</div>
+      <div>
+        <blockquote>&ldquo;Technique is just the starting point. My job is finding the color of voice that's
+          already yours.&rdquo;</blockquote>
+        <div class="name">Choi Jong-su (최종수)</div>
+        <div class="role mono">Lead Producer, OPENMIC Music Studio · Seoul</div>
+        <div class="cred">
+          Vocal performance graduate, Dong-Ah Institute of Media and Arts · Top 24, Mnet Superstar K3 ·
+          Former vocalist, National Police Symphony Orchestra · In-house trainee vocal coaching, JYP Entertainment
+          · Students placed via SM / YG / JYP / THE BLACK LABEL / ADOR auditions and into top Korean music
+          university programs · Session/chorus credits with Insooni, Bada, Lim Tae-kyung, and others.
+        </div>
+        <div class="philosophy">
+          <span class="eyebrow mono">HIS PHILOSOPHY</span>
+          <p>&ldquo;Do the opposite of the pattern you'd default to &mdash; that's usually where the interesting,
+            creative stuff shows up. Don't manage how it looks to other people. Just push all the way through
+            on the thing you actually want to make.&rdquo;</p>
+          <div class="attr">&mdash; Choi Jong-su</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">FAQ</div>
+    <h2>Questions before you book?</h2>
+    <p class="section-sub">The things international students ask us most, answered up front.</p>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do I need to speak Korean?</summary>
+        <p>No. Every session in the 4-Week Complete Cover Project includes live human interpretation, so you can
+          train fully in English (or your language) with no barrier. Our free 15-minute Voice Type call also runs
+          in English.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I've never had a singing lesson. Is this still for me?</summary>
+        <p>Yes. The free VBTI voice analysis is designed to meet you where you are — we build your plan around
+          what your voice actually measures, not around assumed experience. Complete beginners and gigging
+          vocalists both go through the same first step.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What time zone are the Zoom sessions in?</summary>
+        <p>Whatever works for you. Calendly shows every available slot converted to your local time zone
+          automatically, and we regularly schedule around US, European and Southeast Asian hours.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I pay, and in what currency?</summary>
+        <p>Pricing is shown in USD. Payment details are confirmed after your free call, once we've scoped which
+          program fits you — no payment is required to book the discovery call itself.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What do I actually walk away with from the 4-Week Cover Project?</summary>
+        <p>A professionally mixed and mastered cover recording, an edited cover video, four weeks of live 1:1
+          coaching on technique and delivery, and a voice-type report to keep training with afterward.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I visit the studio in Seoul in person?</summary>
+        <p>Yes — if you're traveling to Korea, you can train at our Anyang studio directly, or book the K-Vocal
+          Experience Day for a one-time in-person session built for visitors. No Korean or prior experience
+          needed for either.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I get a custom track made without doing the coaching program?</summary>
+        <p>Yes, that's a separate, one-off service — see "Get a Song Made" above. It's independent of the
+          coaching program and doesn't require a Voice Type report first.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2 style="margin:0 auto 16px;">Ready to hear what your voice is telling you?</h2>
+    <p class="lede" style="margin:0 auto 30px;">Start with a free 15-minute call — no card, no pressure.</p>
+    <a class="btn-primary" href="https://calendly.com/chlwhdtn305/30min" target="_blank" rel="noopener">Book Your Free Voice Type Call</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-legal">
+      <b>OPENMIC Music Studio</b> — VBTI Voice Analysis &amp; Vocal Coaching<br>
+      Business Reg. No. 683-18-02583 · 6 Dongpyeon-ro 27beon-gil, Dongan-gu, Anyang-si, Gyeonggi-do, South Korea<br>
+      Studio line: +82 10-6382-5530 (Korean/English by appointment)
+    </div>
+    <div class="foot-legal">
+      <b>vbti.co.kr</b> — the international site.<br>
+      Korean-language service: <a href="https://vbti.kr">vbti.kr</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var canvas = document.getElementById('radar');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var dpr = window.devicePixelRatio || 1;
+  var size = canvas.width;
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.scale(dpr, dpr);
+
+  var labels = ['Breath', 'Resonance', 'Pitch Link', 'Dynamics', 'Articulation', 'Delivery'];
+  var values = [0.72, 0.85, 0.6, 0.9, 0.55, 0.8];
+  var cx = size / 2, cy = size / 2, r = size * 0.25;
+  function cssVar(name, fallback) {
+    var v = getComputedStyle(document.documentElement).getPropertyValue(name);
+    return v ? v.trim() : fallback;
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var start = null;
+
+  // ---- waveform -> radar morph ----
+  var N = 48;
+  var bars = [];
+  for (var bi = 0; bi < N; bi++) bars.push(0.15 + Math.random() * 0.85);
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function easeInOut(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  function waveformPoint(i) {
+    var x = (i / (N - 1)) * (size * 0.74) + size * 0.13;
+    var h = bars[i] * size * 0.22;
+    return { baseX: x, baseY: cy + h * 0.4, tipX: x, tipY: cy - h * 0.6 };
+  }
+  function radialPoint(i) {
+    var angle = (i / N) * Math.PI * 2 - Math.PI / 2;
+    var v = bars[i];
+    var baseR = r * 0.12;
+    return {
+      baseX: cx + Math.cos(angle) * baseR, baseY: cy + Math.sin(angle) * baseR,
+      tipX: cx + Math.cos(angle) * r * (0.28 + v * 0.72), tipY: cy + Math.sin(angle) * r * (0.28 + v * 0.72)
+    };
+  }
+
+  function point(i, frac, vals) {
+    var angle = (Math.PI * 2 * i) / labels.length - Math.PI / 2;
+    var v = (vals || values)[i] * frac;
+    return [cx + Math.cos(angle) * r * v, cy + Math.sin(angle) * r * v];
+  }
+
+  // gentle per-axis "breathing" so the shape keeps a slow, living motion once settled
+  var breathPeriods = [5200, 6100, 4700, 6700, 5600, 6300];
+  var breathPhases = [0, 1.1, 2.3, 0.6, 3.4, 1.8];
+  var breathAmp = 0.045;
+  function breathingValues(tMs) {
+    var out = new Array(values.length);
+    for (var i = 0; i < values.length; i++) {
+      var w = (Math.PI * 2 * tMs) / breathPeriods[i] + breathPhases[i];
+      out[i] = Math.max(0.08, Math.min(1.05, values[i] + Math.sin(w) * breathAmp));
+    }
+    return out;
+  }
+
+  // smooth closed curve through the 6 points, for a refined, rounded silhouette
+  function smoothPolygonPath(pts) {
+    var n = pts.length;
+    var mids = [];
+    for (var i = 0; i < n; i++) {
+      var a = pts[i], b = pts[(i + 1) % n];
+      mids.push([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]);
+    }
+    ctx.beginPath();
+    ctx.moveTo(mids[n - 1][0], mids[n - 1][1]);
+    for (var i = 0; i < n; i++) {
+      ctx.quadraticCurveTo(pts[i][0], pts[i][1], mids[i][0], mids[i][1]);
+    }
+    ctx.closePath();
+  }
+
+  function drawRadar(alpha, vals) {
+    if (alpha <= 0) return;
+    var line = cssVar('--line', '#2c2a24');
+    var gold = cssVar('--gold', '#d4af37');
+    var goldWash = cssVar('--gold-wash', 'rgba(212,175,55,0.1)');
+    var mute = cssVar('--text-mute', '#948d7c');
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = line;
+    ctx.lineWidth = 1;
+    for (var ring = 1; ring <= 4; ring++) {
+      ctx.beginPath();
+      for (var i = 0; i <= labels.length; i++) {
+        var angle = (Math.PI * 2 * (i % labels.length)) / labels.length - Math.PI / 2;
+        var rr = r * (ring / 4);
+        var x = cx + Math.cos(angle) * rr, y = cy + Math.sin(angle) * rr;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    ctx.fillStyle = mute;
+    ctx.font = '11px "IBM Plex Mono", monospace';
+    for (var i = 0; i < labels.length; i++) {
+      var angle = (Math.PI * 2 * i) / labels.length - Math.PI / 2;
+      var x2 = cx + Math.cos(angle) * r, y2 = cy + Math.sin(angle) * r;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x2, y2); ctx.strokeStyle = line; ctx.stroke();
+      var lx = cx + Math.cos(angle) * (r + 18), ly = cy + Math.sin(angle) * (r + 18);
+      ctx.textAlign = Math.abs(Math.cos(angle)) < 0.2 ? 'center' : (Math.cos(angle) > 0 ? 'left' : 'right');
+      ctx.fillText(labels[i], lx, ly + 4);
+    }
+    var pts = [];
+    for (var i = 0; i < labels.length; i++) pts.push(point(i, 1, vals));
+    ctx.lineJoin = 'miter';
+    ctx.beginPath();
+    for (var i = 0; i <= pts.length; i++) {
+      var p = pts[i % pts.length];
+      i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]);
+    }
+    ctx.closePath();
+    ctx.fillStyle = goldWash;
+    ctx.fill();
+    ctx.shadowColor = 'rgba(212,175,55,0.35)';
+    ctx.shadowBlur = 10;
+    ctx.strokeStyle = gold;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    for (var i = 0; i < labels.length; i++) {
+      var p = pts[i];
+      ctx.beginPath(); ctx.arc(p[0], p[1], 3, 0, Math.PI * 2); ctx.fillStyle = gold; ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function draw(elapsed) {
+    ctx.clearRect(0, 0, size, size);
+    var gold = cssVar('--gold', '#d4af37');
+    var wavePhaseEnd = 900, morphPhaseEnd = 2000, settlePhaseEnd = 3200;
+    var barAlpha = 1, radarAlpha = 0, morphT = 0;
+    if (elapsed < wavePhaseEnd) { morphT = 0; }
+    else if (elapsed < morphPhaseEnd) { morphT = easeInOut((elapsed - wavePhaseEnd) / (morphPhaseEnd - wavePhaseEnd)); }
+    else { morphT = 1; }
+    if (elapsed > morphPhaseEnd) {
+      var t2 = Math.min(1, (elapsed - morphPhaseEnd) / (settlePhaseEnd - morphPhaseEnd));
+      barAlpha = 1 - t2; radarAlpha = t2;
+    }
+    ctx.lineCap = 'round';
+    for (var i = 0; i < N; i++) {
+      var p0 = waveformPoint(i), p1 = radialPoint(i);
+      var bx = lerp(p0.baseX, p1.baseX, morphT), by = lerp(p0.baseY, p1.baseY, morphT);
+      var tx = lerp(p0.tipX, p1.tipX, morphT), ty = lerp(p0.tipY, p1.tipY, morphT);
+      ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(tx, ty);
+      ctx.strokeStyle = 'rgba(212,175,55,' + (0.6 * barAlpha) + ')';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = 'rgba(212,175,55,0.55)'; ctx.shadowBlur = 6;
+      ctx.stroke();
+    }
+    ctx.shadowBlur = 0;
+    if (elapsed >= settlePhaseEnd) {
+      drawRadar(radarAlpha, breathingValues(elapsed - settlePhaseEnd));
+    } else {
+      drawRadar(radarAlpha);
+    }
+  }
+
+  if (reduceMotion) {
+    drawRadar(1);
+  } else {
+    function step(ts) {
+      if (!start) start = ts;
+      var elapsed = ts - start;
+      draw(elapsed);
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+})();
+</script>
