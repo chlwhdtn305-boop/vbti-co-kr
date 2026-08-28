@@ -3,8 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VBTI &mdash; Free K-Pop Voice Type Analysis &amp; 1:1 Vocal Coaching | OPENMIC</title>
+<meta name="description" content="Free voice analysis, then live 1:1 K-pop vocal coaching over Zoom — from a trainer who has coached SM, YG, JYP, THE BLACK LABEL and ADOR audition hopefuls. Anywhere in the world.">
+<link rel="canonical" href="https://vbti.co.kr/">
+<link rel="alternate" hreflang="en" href="https://vbti.co.kr/">
+<link rel="alternate" hreflang="ko" href="https://vbti.kr/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OPENMIC · VBTI">
+<meta property="og:title" content="What's Your Voice Type? — Free K-Pop Vocal Analysis &amp; Coaching">
+<meta property="og:description" content="Free voice analysis, then live 1:1 K-pop vocal coaching over Zoom — from a trainer who has coached SM, YG, JYP, THE BLACK LABEL and ADOR audition hopefuls.">
+<meta property="og:url" content="https://vbti.co.kr/">
+<meta property="og:image" content="https://vbti.co.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What's Your Voice Type? — Free K-Pop Vocal Analysis &amp; Coaching">
+<meta name="twitter:description" content="Free voice analysis, then live 1:1 K-pop vocal coaching over Zoom — from a trainer who has coached SM, YG, JYP, THE BLACK LABEL and ADOR audition hopefuls.">
+<meta name="twitter:image" content="https://vbti.co.kr/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d0d0d'/%3E%3Cpolygon points='50,12 83,31 83,69 50,88 17,69 17,31' fill='none' stroke='%23d4af37' stroke-width='6'/%3E%3C/svg%3E">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
-<title>VBTI Voice Type</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "OPENMIC Music Studio",
+  "alternateName": "VBTI",
+  "url": "https://vbti.co.kr",
+  "image": "https://vbti.co.kr/og-image.png",
+  "description": "Free K-pop voice type analysis and live 1:1 K-pop vocal coaching over Zoom, plus in-person vocal training in Anyang, South Korea.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "6 Dongpyeon-ro 27beon-gil, 1F Unit 102, Gwanyang-dong",
+    "addressLocality": "Anyang-si",
+    "addressRegion": "Gyeonggi-do",
+    "addressCountry": "KR"
+  },
+  "telephone": "+82-10-6382-5530",
+  "priceRange": "$89-$559"
+}
+</script>
+
 <style>
   :root {
     --bg: #0d0d0d;
@@ -58,6 +101,11 @@
     font-size: 12.5px; font-weight: 700; background: var(--gold); color: #14110d;
     padding: 9px 18px; border-radius: 999px; text-decoration: none; white-space: nowrap;
   }
+  .nav .right { display: flex; align-items: center; gap: 26px; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-links a { font-size: 12.5px; font-weight: 600; color: var(--text-mute); text-decoration: none; white-space: nowrap; }
+  .nav-links a:hover { color: var(--gold-light); }
+  @media (max-width: 860px) { .nav-links { display: none; } }
 
   /* ---------- hero ---------- */
   .hero { padding: 76px 0 64px; position: relative; overflow: hidden; }
@@ -211,6 +259,37 @@
   .philosophy p { font-size: 14.5px; font-style: italic; color: var(--text-soft); line-height: 1.7; margin-bottom: 8px; }
   .philosophy .attr { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--gold-light); }
 
+  /* ---------- engine / voice types / builder ---------- */
+  .trust-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .axis-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 30px 0 6px; }
+  .axis-item {
+    background: var(--paper); border: 1px solid var(--line); padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .axis-name { font-size: 13.5px; font-weight: 600; color: var(--text-soft); }
+  .axis-spectrum { font-size: 11.5px; color: var(--gold-light); white-space: nowrap; }
+  .axis-vs { color: var(--text-mute-2); }
+
+  /* ---------- deep-dive tabs ---------- */
+  .jump-anchor { display: block; position: relative; top: -90px; visibility: hidden; height: 0; }
+  .tab-bar { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 40px; }
+  .tab-btn {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: transparent;
+    color: var(--text-mute); cursor: pointer; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .tab-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+  .tab-btn.active { background: var(--gold); border-color: var(--gold); color: #14110d; }
+  .tab-panels { position: relative; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: tabIn 0.4s ease; }
+  @keyframes tabIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-panel h3 {
+    font-family: 'Unbounded', sans-serif; font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+    text-wrap: balance; max-width: 26ch; margin-bottom: 12px;
+  }
+  @media (prefers-reduced-motion: reduce) { .tab-panel.active { animation: none; } }
+
   /* ---------- faq ---------- */
   .faq-list { max-width: 760px; margin: 0 auto; }
   .faq-item {
@@ -253,6 +332,7 @@
     .studio-grid { grid-template-columns: 1fr; }
     .exp-card { grid-template-columns: 1fr; text-align: left; }
     .exp-price { text-align: left; }
+    .trust-grid.cols-2, .axis-list { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -264,7 +344,15 @@
 <nav class="nav">
   <div class="wrap">
     <div class="brand">OPENMIC<span class="dot">·</span>VBTI</div>
-    <a class="cta-mini" href="#coaching">See the Program</a>
+    <div class="right">
+      <div class="nav-links">
+        <a href="#engine">The Analysis</a>
+        <a href="#voicetypes">Voice Types</a>
+        <a href="#founder">The Coach</a>
+        <a href="#builder">How It's Built</a>
+      </div>
+      <a class="cta-mini" href="#coaching">See the Program</a>
+    </div>
   </div>
 </nav>
 
@@ -285,6 +373,10 @@
         <a href="#songwriting">Get a Song Made</a>
         <a href="#studio">Visit Our Seoul Studio</a>
         <a href="#experience">K-Vocal Day (Travelers)</a>
+        <a href="#engine">The Analysis</a>
+        <a href="#voicetypes">Voice Types</a>
+        <a href="#founder">The Coach</a>
+        <a href="#builder">How It's Built</a>
       </div>
     </div>
     <div>
@@ -320,6 +412,166 @@
         <p>Our 4-Week Complete Cover Project includes professional mixing, mastering, and an edited cover video —
           not just lesson notes.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<span id="engine" class="jump-anchor"></span>
+<span id="voicetypes" class="jump-anchor"></span>
+<span id="founder" class="jump-anchor"></span>
+<span id="builder" class="jump-anchor"></span>
+<section id="learn-more">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">GO DEEPER</div>
+    <h2>Curious how any of this actually works?</h2>
+    <p class="section-sub">Pick a topic — the analysis engine, what a Voice Type means, who's coaching you, or
+      how the whole thing is built.</p>
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" type="button" data-tab="engine" role="tab" aria-selected="true">The Analysis</button>
+      <button class="tab-btn" type="button" data-tab="voicetypes" role="tab" aria-selected="false">Voice Types</button>
+      <button class="tab-btn" type="button" data-tab="founder" role="tab" aria-selected="false">The Coach</button>
+      <button class="tab-btn" type="button" data-tab="builder" role="tab" aria-selected="false">How It's Built</button>
+    </div>
+
+    <div class="tab-panels">
+
+      <div class="tab-panel active" id="panel-engine" role="tabpanel">
+        <h3>This isn't a black box. Here's exactly what happens to your voice.</h3>
+        <p class="section-sub">Most "AI voice analysis" products won't tell you how the score got made. We will —
+          because we built it ourselves, and it's simpler, and more honest, than it sounds.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num mono">01</div>
+            <h3>Pitch extraction</h3>
+            <p>Your recording runs through the YIN algorithm — a published pitch-detection method (de
+              Cheveign&eacute; &amp; Kawahara, 2002) — implemented from scratch in Python and numpy, frame by
+              frame, to trace your actual pitch in Hz. No AI model touches this step. It's pure signal
+              processing.</p>
+          </div>
+          <div class="step">
+            <div class="step-num mono">02</div>
+            <h3>Feature extraction</h3>
+            <p>From that pitch trace and the raw waveform: pitch error in cents, pitch jitter, onset-to-onset
+              rhythm spacing, RMS loudness and dynamic range, the H1&ndash;H2 harmonic ratio, and singer's-formant
+              energy (the 2.5&ndash;3.5kHz band that determines how forward or covered a voice sounds).</p>
+          </div>
+          <div class="step">
+            <div class="step-num mono">03</div>
+            <h3>Six-axis scoring</h3>
+            <p>Those numbers map onto your radar chart against thresholds set from real coaching experience —
+              not a machine-learning model. Only then does AI enter: Claude writes the plain-language explanation
+              of what your numbers mean.</p>
+          </div>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-card">
+            <div class="num mono">BREATH</div>
+            <p>Measured directly from your long-tone task (duration + stability) when you record one — otherwise
+              approximated from your dynamics score.</p>
+          </div>
+          <div class="trust-card">
+            <div class="num mono">RESONANCE</div>
+            <p>Singer's-formant energy ratio — how much of your sound concentrates in the band that reads as
+              "forward" versus "buried."</p>
+          </div>
+          <div class="trust-card">
+            <div class="num mono">PITCH LINK</div>
+            <p>Pitch stability, plus — when available — how smoothly you connect notes on the low-to-high siren
+              task.</p>
+          </div>
+          <div class="trust-card">
+            <div class="num mono">DYNAMICS</div>
+            <p>RMS loudness variation and dynamic range, measured directly across your recording.</p>
+          </div>
+          <div class="trust-card">
+            <div class="num mono">ARTICULATION</div>
+            <p>Approximated from rhythm and dynamics data — there's no dedicated diction task yet, so this one
+              partly leans on your own self-rating when you give one.</p>
+          </div>
+          <div class="trust-card">
+            <div class="num mono">DELIVERY</div>
+            <p>Same approach as Articulation — approximated, and blended with your self-reported answer when you
+              provide it.</p>
+          </div>
+        </div>
+        <div class="note-box">This is a rule-based signal-processing engine we designed ourselves, not a
+          deep-learning model. The scoring thresholds come from real vocal-coaching experience, and calibrating
+          them against real judge data is on our roadmap. The one place generative AI actually runs is turning
+          your numbers into a report that reads like a person wrote it.</div>
+      </div>
+
+      <div class="tab-panel" id="panel-voicetypes" role="tabpanel">
+        <h3>Four axes. Your combination is your Voice Type.</h3>
+        <p class="section-sub">Think MBTI, but for how you actually sound. Each axis is a spectrum between two
+          poles — where you land on all four shapes which genres, techniques and repertoire actually fit your
+          voice.</p>
+        <div class="axis-list">
+          <div class="axis-item"><span class="axis-name">Breath&ndash;Voice Contact</span><span class="axis-spectrum mono">Balanced <span class="axis-vs">&harr;</span> Pressed</span></div>
+          <div class="axis-item"><span class="axis-name">Resonance Focus</span><span class="axis-spectrum mono">Forward <span class="axis-vs">&harr;</span> Rear</span></div>
+          <div class="axis-item"><span class="axis-name">Pitch Connection</span><span class="axis-spectrum mono">Connected <span class="axis-vs">&harr;</span> Disconnected</span></div>
+          <div class="axis-item"><span class="axis-name">Expression Dynamics</span><span class="axis-spectrum mono">Dynamic <span class="axis-vs">&harr;</span> Static</span></div>
+        </div>
+        <div class="path-grid">
+          <div class="path-card">
+            <div class="path-tag mono">PRESSED &middot; FORWARD &middot; CONNECTED &middot; DYNAMIC</div>
+            <h3>The Belter</h3>
+            <p class="path-desc">Anthemic pop and dance-pop choruses built for big, forward-placed power notes —
+              the sound of a stadium K-pop title track.</p>
+          </div>
+          <div class="path-card">
+            <div class="path-tag mono">BALANCED &middot; FORWARD &middot; CONNECTED &middot; DYNAMIC</div>
+            <h3>The Runner</h3>
+            <p class="path-desc">Contemporary R&amp;B and soul, where smooth note-to-note connection carries runs
+              and ad-libs without strain.</p>
+          </div>
+          <div class="path-card">
+            <div class="path-tag mono">BALANCED &middot; REAR &middot; CONNECTED &middot; STATIC</div>
+            <h3>The Storyteller</h3>
+            <p class="path-desc">Ballads and acoustic singer-songwriter material, where a warm, held-back tone
+              lets the lyric carry the song.</p>
+          </div>
+          <div class="path-card">
+            <div class="path-tag mono">PRESSED &middot; REAR &middot; DISCONNECTED &middot; DYNAMIC</div>
+            <h3>The Edge</h3>
+            <p class="path-desc">Rock and rap-rock delivery, where deliberate staccato attack and grit read as
+              energy, not a flaw.</p>
+          </div>
+        </div>
+        <div class="note-box">These four are examples, not the full set — four axes with two poles each makes
+          sixteen real combinations, and most voices sit somewhere between the poles rather than at one extreme.
+          Your actual VBTI report shows exactly where you land on each spectrum, in percentages.</div>
+      </div>
+
+      <div class="tab-panel" id="panel-founder" role="tabpanel">
+        <h3>Trained where K-pop trains.</h3>
+        <p class="section-sub">Coaching is led by a producer with in-house trainee-coaching experience at JYP
+          Entertainment, and a track record of students placed through SM, YG, JYP, THE BLACK LABEL and ADOR
+          auditions.</p>
+        <div class="philosophy" style="margin-top:26px; max-width:520px;">
+          <p>&ldquo;Technique is just the starting point. Our job is finding the color of voice that's already
+            yours.&rdquo;</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-builder" role="tabpanel">
+        <h3>Built in-house, not outsourced.</h3>
+        <p class="section-sub">VBTI isn't a white-labeled tool or an agency build — it's developed and maintained
+          in-house, on a straightforward, documented stack.</p>
+        <div class="trust-grid cols-2" style="margin-top:32px;">
+          <div class="trust-card"><div class="num mono">BACKEND</div><p>Python + FastAPI.</p></div>
+          <div class="trust-card"><div class="num mono">ANALYSIS ENGINE</div><p>A self-built <span class="mono">vocal_pipeline</span> package — pure numpy/scipy signal processing. No external AI model in the measurement layer.</p></div>
+          <div class="trust-card"><div class="num mono">REPORT WRITING</div><p>Anthropic's Claude API generates the plain-language feedback text.</p></div>
+          <div class="trust-card"><div class="num mono">REPORTS</div><p>An HTML web report, plus a PDF version built with ReportLab.</p></div>
+          <div class="trust-card"><div class="num mono">PAYMENT</div><p>PortOne SDK.</p></div>
+          <div class="trust-card"><div class="num mono">FREE QUIZ</div><p>Built on Smore, connected to the backend by webhook.</p></div>
+          <div class="trust-card"><div class="num mono">HOSTING</div><p>Render.</p></div>
+          <div class="trust-card"><div class="num mono">DEVELOPMENT</div><p>Written and iterated in direct collaboration with Claude, deployed via GitHub.</p></div>
+        </div>
+        <div class="note-box">If "built with AI" makes you wonder whether the results are real: the measurement
+          layer above is deterministic signal processing with no AI in it at all. The only AI in the loop writes
+          sentences, not scores.</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -478,34 +730,6 @@
       </div>
     </div>
     <div class="note-box">Draft pricing — let us know if you'd like this priced differently before it goes live.</div>
-  </div>
-</section>
-
-<section id="founder">
-  <div class="wrap">
-    <div class="kicker eyebrow mono">YOUR COACH</div>
-    <div class="founder">
-      <div class="founder-mark">CJ</div>
-      <div>
-        <blockquote>&ldquo;Technique is just the starting point. My job is finding the color of voice that's
-          already yours.&rdquo;</blockquote>
-        <div class="name">Choi Jong-su (최종수)</div>
-        <div class="role mono">Lead Producer, OPENMIC Music Studio · Seoul</div>
-        <div class="cred">
-          Vocal performance graduate, Dong-Ah Institute of Media and Arts · Top 24, Mnet Superstar K3 ·
-          Former vocalist, National Police Symphony Orchestra · In-house trainee vocal coaching, JYP Entertainment
-          · Students placed via SM / YG / JYP / THE BLACK LABEL / ADOR auditions and into top Korean music
-          university programs · Session/chorus credits with Insooni, Bada, Lim Tae-kyung, and others.
-        </div>
-        <div class="philosophy">
-          <span class="eyebrow mono">HIS PHILOSOPHY</span>
-          <p>&ldquo;Do the opposite of the pattern you'd default to &mdash; that's usually where the interesting,
-            creative stuff shows up. Don't manage how it looks to other people. Just push all the way through
-            on the thing you actually want to make.&rdquo;</p>
-          <div class="attr">&mdash; Choi Jong-su</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -756,6 +980,49 @@
       requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  var learnMore = document.getElementById('learn-more');
+  var deepLinks = ['engine', 'voicetypes', 'founder', 'builder'];
+
+  function activateTab(name) {
+    if (deepLinks.indexOf(name) === -1) return false;
+    tabBtns.forEach(function (b) {
+      var on = b.dataset.tab === name;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function (p) {
+      p.classList.toggle('active', p.id === 'panel-' + name);
+    });
+    return true;
+  }
+
+  tabBtns.forEach(function (b) {
+    b.addEventListener('click', function () { activateTab(b.dataset.tab); });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    var name = a.getAttribute('href').slice(1);
+    if (deepLinks.indexOf(name) === -1) return;
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      activateTab(name);
+      if (learnMore) learnMore.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  if (activateTab(window.location.hash.slice(1))) {
+    // Land straight on the right panel if someone opens a deep link directly.
+    window.addEventListener('load', function () {
+      if (learnMore) learnMore.scrollIntoView({ block: 'start' });
+    });
   }
 })();
 </script>
