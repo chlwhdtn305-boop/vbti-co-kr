@@ -144,6 +144,9 @@
   }
   .trust-line { font-size: 12.5px; color: var(--text-mute); }
   .trust-line b { color: var(--text-soft); font-weight: 600; }
+  .trust-badges { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
+  .trust-badge { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-mute); }
+  .trust-badge .ic { color: var(--gold); font-size: 13px; }
   .hub-nav { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
   .hub-nav a {
     font-size: 12px; font-weight: 600; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
@@ -199,6 +202,18 @@
   .flagship li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
   .flagship-alt { font-size: 12.5px; color: var(--text-mute); margin-top: 14px; }
   .flagship-alt a { color: var(--gold-light); font-weight: 600; text-decoration: none; }
+  .secure-note { font-size: 11.5px; color: var(--text-mute-2); margin-top: 10px; display: flex; align-items: center; gap: 6px; }
+  .secure-note .ic { color: var(--gold); }
+  .guarantee-box {
+    margin-top: 22px; background: var(--gold-wash); border: 1px solid var(--gold); border-radius: 8px;
+    padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .guarantee-box .check { font-size: 20px; color: var(--gold); line-height: 1.1; flex-shrink: 0; }
+  .guarantee-box .gt-title {
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; color: var(--gold-light);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .guarantee-box p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
   .flagship-media .fm-label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
   .fm-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
   .fm-item .fm-num { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--gold); flex-shrink: 0; padding-top: 1px; }
@@ -368,6 +383,10 @@
         <a class="btn-ghost" href="#coaching">See the Program →</a>
       </div>
       <div class="trust-line">Currently onboarding a <b>small pilot group</b> of international students — limited 1:1 slots.</div>
+      <div class="trust-badges">
+        <div class="trust-badge"><span class="ic">&check;</span> Full refund on remaining sessions if you're not happy after session 1</div>
+        <div class="trust-badge"><span class="ic">&#128274;</span> Payment details confirmed securely, one-on-one, after booking</div>
+      </div>
       <div class="hub-nav">
         <a href="#coaching">4-Week Cover Coaching</a>
         <a href="#songwriting">Get a Song Made</a>
@@ -625,7 +644,16 @@
           <li>Edited official cover video — vertical + horizontal cuts, ready to post</li>
         </ul>
         <a class="btn-primary" href="mailto:5042480@naver.com?subject=4-Week%20Complete%20Cover%20Project&body=Hi%20OPENMIC%2C%0A%0AI'd%20like%20to%20start%20the%204-Week%20Complete%20Cover%20Project.%0A%0AMy%20name%3A%0AMy%20time%20zone%3A%0ASong%20I%20have%20in%20mind%20(optional)%3A">Start My 4-Week Cover Project</a>
+        <div class="secure-note"><span class="ic">&#128274;</span> International card checkout is being finalized — we'll arrange secure payment with you directly by email after booking.</div>
         <div class="flagship-alt">Not ready to commit yet? <a href="https://calendly.com/chlwhdtn305/30min" target="_blank" rel="noopener">Book the free Voice Type call first →</a></div>
+        <div class="guarantee-box">
+          <span class="check">&check;</span>
+          <div>
+            <div class="gt-title">Satisfaction Guarantee</div>
+            <p>Not happy after your first session? Tell us before session two starts, and we'll refund every
+              remaining session in full — no questions asked.</p>
+          </div>
+        </div>
       </div>
       <div class="flagship-media">
         <div class="fm-label mono">WHAT YOU WALK AWAY WITH</div>
@@ -739,6 +767,18 @@
     <h2>Questions before you book?</h2>
     <p class="section-sub">The things international students ask us most, answered up front.</p>
     <div class="faq-list">
+      <details class="faq-item">
+        <summary>What if I'm not happy with my first session?</summary>
+        <p>You're covered. If the 4-Week Complete Cover Project isn't working for you after session 1, let us
+          know before session 2 starts and we'll refund every remaining session in full — no questions asked.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is payment secure?</summary>
+        <p>Yes. We already process Korean card payments through PortOne, a PCI-compliant gateway used for our
+          Korean-language service — international card checkout through the same system is being finalized. Until
+          it's live, booking starts with an email inquiry so we can confirm your schedule, then arrange secure
+          payment with you directly, one-on-one, in a way that works for your card and country.</p>
+      </details>
       <details class="faq-item">
         <summary>Do I need to speak Korean?</summary>
         <p>No. Every session in the 4-Week Complete Cover Project includes live human interpretation, so you can
