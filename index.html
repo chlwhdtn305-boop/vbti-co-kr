@@ -305,6 +305,15 @@
   }
   @media (prefers-reduced-motion: reduce) { .tab-panel.active { animation: none; } }
 
+  /* ---------- reviews ---------- */
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+  .review-card { background: var(--paper); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; }
+  .review-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+  .review-quote { font-size: 14px; color: var(--text-soft); line-height: 1.7; flex-grow: 1; margin-bottom: 16px; }
+  .review-quote::before { content: open-quote; color: var(--gold); }
+  .review-quote::after { content: close-quote; color: var(--gold); }
+  .review-source { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.5px; color: var(--text-mute-2); border-top: 1px solid var(--line-soft); padding-top: 12px; }
+
   /* ---------- faq ---------- */
   .faq-list { max-width: 760px; margin: 0 auto; }
   .faq-item {
@@ -348,6 +357,7 @@
     .exp-card { grid-template-columns: 1fr; text-align: left; }
     .exp-price { text-align: left; }
     .trust-grid.cols-2, .axis-list { grid-template-columns: 1fr; }
+    .review-grid { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -361,6 +371,7 @@
     <div class="brand">OPENMIC<span class="dot">·</span>VBTI</div>
     <div class="right">
       <div class="nav-links">
+        <a href="#reviews">Reviews</a>
         <a href="#engine">The Analysis</a>
         <a href="#voicetypes">Voice Types</a>
         <a href="#founder">The Coach</a>
@@ -392,6 +403,7 @@
         <a href="#songwriting">Get a Song Made</a>
         <a href="#studio">Visit Our Seoul Studio</a>
         <a href="#experience">K-Vocal Day (Travelers)</a>
+        <a href="#reviews">Student Reviews</a>
         <a href="#engine">The Analysis</a>
         <a href="#voicetypes">Voice Types</a>
         <a href="#founder">The Coach</a>
@@ -758,6 +770,67 @@
       </div>
     </div>
     <div class="note-box">Draft pricing — let us know if you'd like this priced differently before it goes live.</div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="kicker eyebrow mono">REAL STUDENT REVIEWS</div>
+    <h2>What students actually say.</h2>
+    <p class="section-sub">Verified reviews from students at our Seoul-area studio, translated from Korean — the
+      same coaching approach and coach behind VBTI's live sessions.</p>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">You have to take a lesson with this coach, no question. I've sat in on trial
+          sessions at other studios before, and the difference in genuine care for the student was obvious. What I
+          liked most: right after recording, they pointed out exactly what to fix, with examples simple enough to
+          actually understand. In a short session, I trusted the process completely.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; SOOMGO, SOUTH KOREA &middot; 2024</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">The vocal lessons were extremely satisfying. Instead of just "sing it like this,"
+          the coach systematically explained the mechanics of breath, resonance, and vocal cord use &mdash; so I
+          understood the why, not just the how. It's a logical, science-based approach, not one that relies on feel
+          alone, so I never lose direction when I practice on my own.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; NAVER, SOUTH KOREA &middot; 2026</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">I'd been in a band for about 8 years and always wondered whether vocal training
+          would actually change anything meaningful. My bandmates noticed the difference right away, on stage and in
+          rehearsal. It's easy to absorb and it sticks &mdash; your body remembers it. 200% satisfied &mdash; I
+          signed up for regular lessons on the spot.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; NAVER, SOUTH KOREA &middot; 2026</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">I took vocal lessons for two months a few years ago and improved a lot, but it felt
+          repetitive, so I hesitated before trying again as an adult. This time was different: my specific concerns
+          were heard in detail and corrected accordingly. I felt real improvement within one hour. It's not
+          one-size-fits-all &mdash; the lesson is built around your own tone and taste.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; NAVER, SOUTH KOREA &middot; 2026</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">I used to just hum at home, then got curious about recording and visited. The coach
+          was so patient, walking me through posture and technique step by step &mdash; it was the first time I ever
+          enjoyed the sound of my own voice.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; NAVER, SOUTH KOREA &middot; 2026</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">This was my first-ever recording session and I was nervous going in. It wasn't just
+          recording &mdash; the vocal coaching itself was careful and thorough. Everything was explained at a
+          total-beginner's level, with the key points made clear and simple, so I could record a take I was actually
+          happy with.</p>
+        <div class="review-source">VERIFIED REVIEW &middot; NAVER, SOUTH KOREA &middot; 2026</div>
+      </div>
+    </div>
+    <div class="note-box">These reviews are from students at our Korean-language, in-person studio &mdash;
+      translated here so you can hear directly from real students. VBTI is newer, so its own review history is
+      still being built as international students come through the program.</div>
   </div>
 </section>
 
